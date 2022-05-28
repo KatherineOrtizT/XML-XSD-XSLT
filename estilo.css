@@ -1,0 +1,10 @@
+body{
+    background-color: rgba(0, 255, 255, 0.514);
+    margin: 0 40%;
+}
+table{
+    background-color: white;
+}
+th{
+    background-color: rgb(24, 83, 247);
+}

@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+ <!-- schema va siempre por defecto -->
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+
+        <!-- DECLARAMOS LOS ELEMENTOS SIMPLES -->
+    <xs:element name="nombre" type="texto30"/>
+    <xs:element name="autor" type="texto30"/>
+    <xs:element name="apellido" type="texto30"/>
+    <xs:element name="precio" type="xs:nonNegativeInteger"/>
+    <xs:element name="fecha" type="xs:date"/>
+    <xs:element name="editorial" type="xs:string"/>
+    <xs:element name="telefono" type="xs:string"/>
+    <xs:element name="direccion">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/> <!-- NO ELIMINA ningun ESPACIO EN BLANCO-->
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+        <xs:simpleType name="texto30">  
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="30"/> <!-- maximo 30 cacteres -->
+            </xs:restriction>
+        </xs:simpleType>
+
+    <!-- es un elemento simple pero con restricciones -->
+    <xs:element name="codigo">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="\d{2}\.[A-Z]{3}[\+\-]\d{2}\-[A-Z]"/> <!--pide dos numeros, un punto, tres letras, un signo mas o signo menos, dos numeros, un menos y tres letras -->
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="dni">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="\d{8}\-[A-Z]"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element> 
+
+    <!-- declaramos los atributos -->
+    <xs:attribute name="cod">
+         <!-- restringir un atributo con un patron  -->
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="[A-Z]\d{2}\-\d{2}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+
+    <!-- ELEMENTOS COMPLEJOS -->
+    <xs:element name="productos">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="libros"/>
+                <xs:element ref="revista"/>
+            </xs:choice>
+            <xs:attribute ref="cod" use="required"/>  <!-- tiene un atributo y es obligatorio -->
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="libros">
+        <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="nombre" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="autor" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="codigo" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="precio" minOccurs="1"/>
+            <xs:element ref="fecha" />
+        </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element  name="revista">
+        <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="nombre" minOccurs="1" maxOccurs="2"/>
+            <xs:element ref="editorial"  minOccurs="1" />
+            <xs:element ref="codigo" minOccurs="1" maxOccurs="1" />
+            <xs:element ref="precio" minOccurs="1" />
+            <xs:element ref="fecha" />
+        </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="cliente">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded"> 
+            <xs:element ref="nombre" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="apellido" minOccurs="1" maxOccurs="2"/>
+            <xs:element ref="codigo" minOccurs="0"/>
+            <xs:element ref="dni" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="telefono" minOccurs="0"/>
+            <xs:element ref="direccion" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:attribute name="id">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="[A-Z]\d{2}\-\d{2}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+
+    <!--elemento raiz biblioteca-->
+<xs:element name="biblioteca">
+  <xs:complexType>
+    <xs:sequence maxOccurs="unbounded">
+        <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element ref="productos"/>
+            <xs:element ref="cliente" />
+        </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element> 
+
+
+
+
+
+</xs:schema>

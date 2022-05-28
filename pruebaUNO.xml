@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!-- Para probar el XSLT 
+    1 desbloquea el proximo comentario 
+    2 bloquea la etiqueta biblioteca debajo del comentario XSD -->
+
+<!-- <?xml-stylesheet type="text/xsl" href="file:biblioteca.xsl"?>
+<biblioteca>  -->
+
+
+
+            <!--  EL XSD -->
+<biblioteca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="biblioteca.xsd">  
+            <!-- hasta aqui -->
+
+    <productos cod="K98-19">
+        <libros>
+            <nombre>Caperucita Roja</nombre>
+            <!-- PUEDE NO TENER AUTOR  -->
+            <codigo>87.YUI-98-P</codigo>
+            <precio>6</precio>
+            <fecha>1999-09-18</fecha>
+        </libros>
+        <libros>
+            <nombre>El secreto de Maria</nombre>
+            <!-- puede tener varios autores -->
+            <autor>Maria Casillas</autor>
+            <autor>Maria Chantal</autor>
+            <codigo>46.UYT+42-P</codigo>
+            <precio>6</precio>
+            <fecha>1999-09-18</fecha>
+        </libros>
+        <libros>
+            <nombre>Los tres cerditos</nombre>
+            <autor>Antonio Buendia</autor>
+            <!-- el codigo es obligatorio y solo puede tener uno 
+            PROBAR DESBLOQUEANDO el siguiente comentario-->
+            <!-- <codigo>89.AGT-78-Y</codigo> -->
+            <codigo>89.AGT-78-Y</codigo>
+            <precio>7</precio>
+            <fecha>1999-09-18</fecha>
+        </libros>
+        <libros>
+            <nombre>Blanca Nieves</nombre>
+            <autor>Alex Polo</autor>
+            <codigo>77.YPO+98-P</codigo>
+            <precio>6</precio>
+            <fecha>1999-09-18</fecha>
+        </libros>
+        <libros>
+            <nombre>Cenicienta</nombre>
+            <autor>Gabriela Arechua</autor>
+            <codigo>65.ERT+78-Y</codigo>
+            <precio>6</precio>
+            <fecha>1999-09-18</fecha>
+        </libros>
+        <revista>
+            <nombre>Pop</nombre>
+            <editorial>Lope de vega</editorial>
+            <codigo>89.AGT+78-Y</codigo>
+            <precio>9</precio>
+            <fecha>1999-09-18</fecha>
+        </revista>
+    </productos>
+    <cliente>
+        <nombre>Katherine</nombre>
+        <apellido>Ortiz</apellido>
+        <!-- puede tener solo un apellido -->
+        <codigo>89.AGT+78-Y</codigo>
+        <dni>78654909-A</dni>
+        <telefono>68754908</telefono>
+        <direccion>calle San Bernardo </direccion>
+    </cliente>
+
+</biblioteca>
